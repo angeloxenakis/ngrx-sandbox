@@ -1,16 +1,34 @@
 <!-- {{ days$ | async }} -->
 
-<div>
-  <div *ngFor="let day of days$ | async">
-    <tr>
-      <td>{{ day }}</td>
-      <td>{{ day }}</td>
-      <td>{{ day }}</td>
-      <td>{{ day }}</td>
-    </tr>
-  </div>
+<div class="header">
+	<div class="header-title">
+		<img class="header-icon" src="https://app-cdn.clickup.com/assets/images/brand/clickup-symbol_color.svg"/>
+		<h1>ClickUpWeather</h1>
+	</div>
+	<h4>All your ClickUp weather in one place </h4>
 </div>
 
 
-<button (click)="sortAscending()">Ascending</button>
-<button (click)="sortDescending()">Descending</button>
+<div class="table-container">
+	<div class="table-tool-bar">
+		<h2>Four Day Weather Forecast</h2>
+		<div>
+			Sort By:
+			<button (click)="sortByDate()">Date</button>
+			<button (click)="sortByHigh()">High</button>
+			<button (click)="sortByLow()">Low</button>
+		</div>
+	</div>
+	<table>
+		<tr>
+			<th class="top-left-cell">Date</th>
+			<th>Temp High</th>
+			<th class="top-right-cell">Temp Low</th>
+		</tr>
+		<tr *ngFor="let day of days$ | async">
+			<td>{{ day.date }}</td>
+			<td>{{ day.high }}</td>
+			<td>{{ day.low }}</td>
+		</tr>
+	</table>
+</div>
