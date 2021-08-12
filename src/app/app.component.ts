@@ -20,17 +20,21 @@ interface AppState {
 export class AppComponent {
   title = 'clickup-take-home';
 
-  days$: Observable<object[]>
+  days$: Observable<any[]>
 
   constructor(private store: Store<AppState>) {
     this.days$ = this.store.select('days')
   }
 
-  sortAscending() {
-    this.store.dispatch({type: 'ASCENDING'})
+  sortByDate() {
+    this.store.dispatch({type: 'DATE'})
   }
 
-  sortDescending() {
-    this.store.dispatch({type: 'DESCENDING'})
+  sortByHigh() {
+    this.store.dispatch({type: 'HIGH'})
+  }
+
+  sortByLow() {
+    this.store.dispatch({type: 'LOW'})
   }
 }
