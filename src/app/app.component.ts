@@ -3,12 +3,7 @@ import { Store } from "@ngrx/store"
 import { Observable, of, from } from "rxjs"
 
 interface AppState {
-  days: [
-      {date: 20, high: 94, low: 62},
-      {date: 10, high: 100, low: 63},
-      {date: 13, high: 96, low: 75},
-      {date: 22, high: 92, low: 74},
-    ]
+  days: []
 }
 
 @Component({
@@ -18,23 +13,19 @@ interface AppState {
 })
 
 export class AppComponent {
-  title = 'clickup-take-home';
-
   days$: Observable<any[]>
+  sortOptions
 
   constructor(private store: Store<AppState>) {
     this.days$ = this.store.select('days')
+    this.sortOptions = this.getSortOptions()
   }
 
-  sortByDate() {
-    this.store.dispatch({type: 'DATE'})
+  getSortOptions() {
+    return ["Date", "High", "Low", "Rain"]
   }
 
-  sortByHigh() {
-    this.store.dispatch({type: 'HIGH'})
-  }
-
-  sortByLow() {
-    this.store.dispatch({type: 'LOW'})
+  sortDays(value: string) {
+    this.store.dispatch({type: value.toUpperCase()})
   }
 }
