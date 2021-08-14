@@ -2,10 +2,15 @@ import { Action } from "@ngrx/store"
 
 export function simpleReducer(
     state: any[] = [
-        {date: 20, high: 94, low: 62, conditions: "Sunny", rainChance: 20},
+        {date: 20, high: 94, low: 68, conditions: "Sunny", rainChance: 20},
         {date: 10, high: 100, low: 63, conditions: "Sunny", rainChance: 10},
         {date: 13, high: 96, low: 75, conditions: "Partly Cloudy", rainChance: 40},
         {date: 22, high: 92, low: 74, conditions: "Rainy", rainChance: 80},
+        {date: 8, high: 88, low: 62, conditions: "Rainy", rainChance: 90},
+        {date: 5, high: 90, low: 70, conditions: "Sunny", rainChance: 25},
+        {date: 26, high: 85, low: 63, conditions: "Rainy", rainChance: 78},
+        {date: 14, high: 82, low: 61, conditions: "Sunny", rainChance: 10},
+        {date: 6, high: 78, low: 58, conditions: "Partly Cloudy", rainChance: 50}
     ], 
     action: Action) {
     console.log(action.type, state)
@@ -25,6 +30,5 @@ export function simpleReducer(
         
         default:
             return state
-
     }
 }

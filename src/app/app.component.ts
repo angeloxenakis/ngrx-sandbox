@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Store } from "@ngrx/store"
-import { Observable, of, from } from "rxjs"
+import { Observable } from "rxjs"
+import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
+import { AppService } from "./app.service"
 
 interface AppState {
   days: []
@@ -16,16 +18,24 @@ export class AppComponent {
   days$: Observable<any[]>
   sortOptions
 
-  constructor(private store: Store<AppState>) {
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.sortOptions, event.previousIndex, event.currentIndex);
+  }
+
+  ngOnInit(): void {
+    this.appService.getData().subscribe(x => console.log(x))
+  }
+
+  constructor(private store: Store<AppState>, private appService: AppService) {
     this.days$ = this.store.select('days')
     this.sortOptions = this.getSortOptions()
   }
 
-  getSortOptions() {
+  public getSortOptions(): string[] {
     return ["Date", "High", "Low", "Rain"]
   }
 
-  sortDays(value: string) {
+  public sortDays(value: string): void {
     this.store.dispatch({type: value.toUpperCase()})
   }
 }
