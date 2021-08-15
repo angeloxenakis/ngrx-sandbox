@@ -7,10 +7,7 @@ import { Observable } from "rxjs";
 })
 
 export class AppService {
-
-    constructor(private _httpClient: HttpClient) {
-
-    }
+    constructor(private _httpClient: HttpClient) {}
 
     public getData(): Observable<any> {
         return this._httpClient.get("https://catfact.ninja/facts")
