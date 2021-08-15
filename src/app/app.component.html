@@ -28,10 +28,16 @@
 		</tr>
 		<tr *ngFor="let day of days$ | async">
 			<td>{{ day.date }}</td>
-			<td>{{ day.high }}</td>
-			<td>{{ day.low }}</td>
+			<td>{{ day.high }}°</td>
+			<td>{{ day.low }}°</td>
 			<td>{{ day.conditions }}</td>
-			<td>{{ day.rainChance }}</td>
+			<td>{{ day.rainChance }}%</td>
 		</tr>
 	</table>
 </div>
+
+<!-- <div cdkDropList cdkDropListOrientation="horizontal" class="example-list" (cdkDropListDropped)="drop($event)">
+    <div class="example-box" *ngFor="let sortOption of sortOptions" cdkDrag>
+		{{sortOption}}
+    </div>
+</div> -->
