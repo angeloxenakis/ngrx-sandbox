@@ -1,4 +1,4 @@
-<div class="header">
+<!-- <div class="header">
 	<div class="header-title">
 		<img class="header-icon" src="https://app-cdn.clickup.com/assets/images/brand/clickup-symbol_color.svg"/>
 		<h1>ClickUpWeather</h1>
@@ -34,15 +34,64 @@
 			<td>{{ day.rainChance }}%</td>
 		</tr>
 	</table>
+</div> -->
+
+<div class="header">
+	<div class="header-title">
+		<img class="header-icon" src="https://app-cdn.clickup.com/assets/images/brand/clickup-symbol_color.svg"/>
+		<h1>ClickUpWeather</h1>
+	</div>
+	<h4>All your ClickUp weather in one place </h4>
 </div>
 
-<WeatherTable></WeatherTable>
+<div class="table-container">
+	<div class="table-tool-bar">
+		<h2>Four Day Weather Forecast</h2>
+		<!-- <div>
+			Sort By:
+			<select #mySelect (change)="sortDays(mySelect.value)">
+				<option *ngFor="let sortOption of sortOptions" [value]="sortOption">
+					{{sortOption}}
+				</option>
+			</select>
+		</div> -->
+	</div>
+	<table cdk-table [dataSource]="dataSource" cdkDropList (cdkDropListDropped)="drop($event)">
+		<!-- Position Column -->
+		<ng-container cdkColumnDef="position">
+		  <th cdk-header-cell cdkDrag *cdkHeaderCellDef> No. </th>
+		  <td cdk-cell *cdkCellDef="let element"> {{element.position}} </td>
+		</ng-container>
+	  
+		<!-- Name Column -->
+		<ng-container cdkColumnDef="name">
+		  <th cdk-header-cell cdkDrag *cdkHeaderCellDef> Name </th>
+		  <td cdk-cell *cdkCellDef="let element"> {{element.name}} </td>
+		</ng-container>
+	  
+		<!-- Weight Column -->
+		<ng-container cdkColumnDef="weight">
+		  <th cdk-header-cell cdkDrag *cdkHeaderCellDef> Weight </th>
+		  <td cdk-cell *cdkCellDef="let element"> {{element.weight}} </td>
+		</ng-container>
+	  
+		<!-- Symbol Column -->
+		<ng-container cdkColumnDef="symbol">
+		  <th cdk-header-cell cdkDrag *cdkHeaderCellDef> Symbol </th>
+		  <td cdk-cell *cdkCellDef="let element"> {{element.symbol}} </td>
+		</ng-container>
+	  
+		<tr cdk-header-row cdkDrag *cdkHeaderRowDef="displayedColumns"></tr>
+		<tr cdk-row *cdkRowDef="let row; columns: displayedColumns;" cdkDrag></tr>
+	  </table>
+</div>
 
 
 
+  <!-- <app-weather-table></app-weather-table> -->
 
-<!-- <div cdkDropList cdkDropListOrientation="horizontal" class="example-list" (cdkDropListDropped)="drop($event)">
-    <div class="example-box" *ngFor="let sortOption of sortOptions" cdkDrag>
-		{{sortOption}}
-    </div>
-</div> -->
+
+
+  
+
+
