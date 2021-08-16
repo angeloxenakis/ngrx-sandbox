@@ -1,4 +1,5 @@
 import { Action } from "@ngrx/store"
+import { AppService } from "./app.service"
 
 export function simpleReducer(
     state: any[] = [
@@ -12,10 +13,15 @@ export function simpleReducer(
         {date: 14, high: 82, low: 61, conditions: "Sunny", rainChance: 10},
         {date: 6, high: 78, low: 58, conditions: "Partly Cloudy", rainChance: 50}
     ], 
+    // state: any[] = [],
     action: Action) {
     console.log(action.type, state)
 
+
     switch (action.type) {
+        case 'INIT': 
+            return state = [...state]
+
         case 'DATE':
             return state = [...state].sort((a, b) => a.date > b.date ? -1 : 1)
 
