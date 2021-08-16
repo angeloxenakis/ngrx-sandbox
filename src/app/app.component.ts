@@ -2,7 +2,7 @@
 // import { Store } from "@ngrx/store"
 // import { Observable } from "rxjs"
 // import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
-// import { AppService } from "./app.service"
+import { AppService } from "./app.service"
 
 // interface AppState {
 //   days: []
@@ -65,9 +65,6 @@ const ELEMENT_DATA: PeriodicElement[] = [
   {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
 ];
 
-/**
- * @title Basic CDK data-table
- */
 @Component({
   selector: 'my-app',
   styleUrls: ['app.component.scss'],
@@ -77,24 +74,14 @@ export class AppComponent {
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = new ExampleDataSource();
 
-  //   public getSortOptions(): string[] {
-//     return ["Date", "High", "Low", "Rain"]
-//   }
-
-//   public sortDays(value: string): void {
-//     this.store.dispatch({type: value.toUpperCase()})
-//   }
-
   drop(event: CdkDragDrop<string[]>) {
     this.dataSource.move(event);
   }
 }
 
 export class ExampleDataSource extends DataSource<PeriodicElement> {
-  /** Stream of data that is provided to the table. */
   data = new BehaviorSubject<PeriodicElement[]>(ELEMENT_DATA);
 
-  /** Connect function called by the table to retrieve one stream containing the data to render. */
   connect(): Observable<PeriodicElement[]> {
     return this.data;
   }

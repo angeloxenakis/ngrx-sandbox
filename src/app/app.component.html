@@ -47,35 +47,27 @@
 <div class="table-container">
 	<div class="table-tool-bar">
 		<h2>Four Day Weather Forecast</h2>
-		<!-- <div>
-			Sort By:
-			<select #mySelect (change)="sortDays(mySelect.value)">
-				<option *ngFor="let sortOption of sortOptions" [value]="sortOption">
-					{{sortOption}}
-				</option>
-			</select>
-		</div> -->
 	</div>
 	<table cdk-table [dataSource]="dataSource" cdkDropList (cdkDropListDropped)="drop($event)">
-		<!-- Position Column -->
+
 		<ng-container cdkColumnDef="position">
 		  <th cdk-header-cell cdkDrag *cdkHeaderCellDef> No. </th>
 		  <td cdk-cell *cdkCellDef="let element"> {{element.position}} </td>
 		</ng-container>
 	  
-		<!-- Name Column -->
+
 		<ng-container cdkColumnDef="name">
 		  <th cdk-header-cell cdkDrag *cdkHeaderCellDef> Name </th>
 		  <td cdk-cell *cdkCellDef="let element"> {{element.name}} </td>
 		</ng-container>
 	  
-		<!-- Weight Column -->
+
 		<ng-container cdkColumnDef="weight">
 		  <th cdk-header-cell cdkDrag *cdkHeaderCellDef> Weight </th>
 		  <td cdk-cell *cdkCellDef="let element"> {{element.weight}} </td>
 		</ng-container>
 	  
-		<!-- Symbol Column -->
+
 		<ng-container cdkColumnDef="symbol">
 		  <th cdk-header-cell cdkDrag *cdkHeaderCellDef> Symbol </th>
 		  <td cdk-cell *cdkCellDef="let element"> {{element.symbol}} </td>
