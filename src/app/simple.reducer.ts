@@ -13,9 +13,11 @@ export function simpleReducer(
         {date: 14, high: 82, low: 61, conditions: "Sunny", rainChance: 10},
         {date: 6, high: 78, low: 58, conditions: "Partly Cloudy", rainChance: 50}
     ], 
+
+    // ^^^ I'm only supplying this default value bc I can't get the cleaned up data to this file
     // state: any[] = [],
     action: Action) {
-    console.log(action.type, state)
+    // console.log(action.type, state)
 
 
     switch (action.type) {

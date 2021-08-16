@@ -26,14 +26,13 @@ export class AppComponent {
 
   ngOnInit(): void {
     this.appService.getData().subscribe(data => this.cleanData(data))
-    this.store
   }
 
   public cleanData(data: any): any[] {
     let weatherArray: [] = data.forecast.forecastday.map((day: any) => {
       return {date: day.date, high: day.day.maxtemp_f, low: day.day.mintemp_f, conditions: day.day.condition.text, rainChance: day.day.daily_will_it_rain}
     })
-    console.log(weatherArray)
+    console.log("I WANT STATE TO BE SET TO THIS:", weatherArray)
     return weatherArray
   }
 
