@@ -1,9 +1,8 @@
-<h2>Weather Table</h2>
-
 <div class="table-container">
 	<div class="table-tool-bar">
-		<h2>Four Day Weather Forecast</h2>
+		<h2>Weather Forecast</h2>
 		<div>
+            <input type="text" #searchTerm (input)="searchDays(searchTerm.value)"/>
 			Sort By:
 			<select #mySelect (change)="sortDays(mySelect.value)">
 				<option *ngFor="let sortOption of sortOptions" [value]="sortOption">

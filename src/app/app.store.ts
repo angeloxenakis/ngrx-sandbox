@@ -9,6 +9,7 @@ export interface AppState {
 export interface WeatherDaysState {
     allWeatherLoaded: boolean;
     data: WeatherDay[] | [];
+    searchResults: WeatherDay[] | [];
 }
 
 const intialState = {
@@ -22,7 +23,8 @@ export enum ActionTypes {
   Date = "DATE",
   High = "HIGH",
   Low = "LOW",
-  Conditions = "CONDITIONS"
+  Conditions = "CONDITIONS",
+  Search = "SEARCH"
 }
 
 export class LoadWeatherRequested implements Action {
@@ -44,6 +46,11 @@ export class High implements Action {
   constructor(public payload: WeatherDay[]) {}
 }
 
+export class Search implements Action {
+  readonly type = ActionTypes.Search
+  constructor(public payload: WeatherDay[]) {}
+}
+
 export type WeatherActions = LoadWeatherRequested | LoadWeather | Date | High ;
 
 export function weatherDaysReducer(state: any = intialState, action: any) {
@@ -52,21 +59,32 @@ export function weatherDaysReducer(state: any = intialState, action: any) {
       
       case ActionTypes.LoadWeather:
       return {
+        ...state,
         allWeatherLoaded: true,
-        data: action.payload
+        data: action.payload,
+        searchResults: action.payload
       };
 
       case ActionTypes.Date:
         return {
-          allWeatherLoaded: true,
-          data: action.payload
+          ...state,
+          searchResults: action.payload
         };
 
       case ActionTypes.High:
+        console.log([...state.data].sort((a: any, b: any) => a.high > b.high ? -1 : a.high < b.high ? 1 : 0))
         return {
-          allWeatherLoaded: true,
-          data: action.payload
+          ...state,
+          searchResults: [...state.searchResults].sort((a: any, b: any) => a.high > b.high ? -1 : a.high < b.high ? 1 : 0)
         };
+
+      case ActionTypes.Search:
+        console.log(action)
+        return {
+          ...state,
+          searchResults: [...state.data].filter(day => day.conditions.includes(action.searchTerm))
+        };
+  
       
 
       default:
@@ -92,6 +110,8 @@ export function weatherDaysReducer(state: any = intialState, action: any) {
 
 const getWeather = createFeatureSelector<AppState, WeatherDaysState>('weather');
 
-export const getAllWeather = createSelector(getWeather, state => state.data);
+
+
+export const getAllWeather = createSelector(getWeather, state => state.searchResults);
 export const getAllWeatherLoaded = createSelector(getWeather, state => state.allWeatherLoaded);
 

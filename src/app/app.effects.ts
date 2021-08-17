@@ -5,8 +5,6 @@ import { LoadWeatherRequested, ActionTypes, LoadWeather, AppState, getAllWeather
 import { withLatestFrom, exhaustMap, filter, map } from 'rxjs/operators';
 import { WeatherDaysService } from './weather-days.service';
 
-console.log()
-
 @Injectable()
 export class AppEffects {
 
@@ -19,10 +17,6 @@ export class AppEffects {
       map(result => new LoadWeather(result))
     ))
   );
-
-
-
-
 
   constructor(
     private actions$: Actions,

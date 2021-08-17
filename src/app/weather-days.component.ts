@@ -7,7 +7,7 @@ import { WeatherDaysService } from './weather-days.service';
 
 
 @Component({
-  selector: 'weather-days',
+  selector: 'weather-table',
   templateUrl: './weather-days.component.html',
   styleUrls: ['./weather-days.component.css']
 })
@@ -21,7 +21,7 @@ export class WeatherDaysComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.weatherDaysService.getData().subscribe(data => this.cleanData(data))
+    this.weatherDaysService.getData().subscribe(data => this.cleanData(data))
   }
 
   public cleanData(data: any): any[] {
@@ -37,6 +37,9 @@ export class WeatherDaysComponent implements OnInit {
     this.store.dispatch({type: value.toUpperCase()})
   }
 
-
+  public searchDays(searchTerm: string): void {
+    console.log(searchTerm)
+    this.store.dispatch({type: "SEARCH", searchTerm: searchTerm})
+  }
 
 }
