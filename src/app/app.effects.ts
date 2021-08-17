@@ -23,5 +23,4 @@ export class AppEffects {
     private store: Store<AppState>,
     private weatherDaysService: WeatherDaysService
   ) {}
-  
 }

@@ -1,5 +1,5 @@
 export interface WeatherDay {
-    date: number, 
+    date: string, 
     high: number, 
     low: number, 
     conditions: string 

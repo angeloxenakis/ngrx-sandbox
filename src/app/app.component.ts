@@ -4,7 +4,8 @@ import { AppState, LoadWeatherRequested } from './app.store';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html'
+  templateUrl: './app.component.html',
+  styleUrls: ['./weather-days.component.css']
 })
 export class AppComponent implements OnInit  {
   constructor(private store: Store<AppState>) {}

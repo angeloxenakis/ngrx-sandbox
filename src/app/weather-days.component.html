@@ -1,14 +1,16 @@
 <div class="table-container">
 	<div class="table-tool-bar">
 		<h2>Weather Forecast</h2>
-		<div>
-            <input type="text" #searchTerm (input)="searchDays(searchTerm.value)"/>
-			Sort By:
-			<select #mySelect (change)="sortDays(mySelect.value)">
-				<option *ngFor="let sortOption of sortOptions" [value]="sortOption">
-					{{sortOption}}
-				</option>
-			</select>
+		<div class="weather-tools">
+            <div>Search By Condition: <input type="text" #searchTerm (input)="searchDays(searchTerm.value)"/></div>
+            <div>
+                Sort By:
+                <select #mySelect (change)="sortDays(mySelect.value)">
+                    <option *ngFor="let sortOption of sortOptions" [value]="sortOption">
+                        {{sortOption}}
+                    </option>
+                </select>
+            </div>
 		</div>
 	</div>
     <table>

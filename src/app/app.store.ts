@@ -24,6 +24,7 @@ export enum ActionTypes {
   High = "HIGH",
   Low = "LOW",
   Conditions = "CONDITIONS",
+  RainChance = "RAIN",
   Search = "SEARCH"
 }
 
@@ -46,17 +47,35 @@ export class High implements Action {
   constructor(public payload: WeatherDay[]) {}
 }
 
+export class Low implements Action {
+  readonly type = ActionTypes.Low
+  constructor(public payload: WeatherDay[]) {}
+}
+
+export class Conditions implements Action {
+  readonly type = ActionTypes.Conditions
+  constructor(public payload: WeatherDay[]) {}
+}
+
+export class RainChance implements Action {
+  readonly type = ActionTypes.Conditions
+  constructor(public payload: WeatherDay[]) {}
+}
+
 export class Search implements Action {
   readonly type = ActionTypes.Search
   constructor(public payload: WeatherDay[]) {}
 }
 
-export type WeatherActions = LoadWeatherRequested | LoadWeather | Date | High ;
+export type WeatherActions = LoadWeatherRequested | LoadWeather | Date | High | Low | Conditions | RainChance;
+
+const getWeather = createFeatureSelector<AppState, WeatherDaysState>('weather');
+export const getAllWeather = createSelector(getWeather, state => state.searchResults);
+export const getAllWeatherLoaded = createSelector(getWeather, state => state.allWeatherLoaded);
 
 export function weatherDaysReducer(state: any = intialState, action: any) {
   switch(action.type) {
-      
-      
+
       case ActionTypes.LoadWeather:
       return {
         ...state,
@@ -68,50 +87,41 @@ export function weatherDaysReducer(state: any = intialState, action: any) {
       case ActionTypes.Date:
         return {
           ...state,
-          searchResults: action.payload
+          searchResults: [...state.searchResults].sort((a: any, b: any) => a.date > b.date ? -1 : a.date < b.date ? 1 : 0)
         };
 
       case ActionTypes.High:
-        console.log([...state.data].sort((a: any, b: any) => a.high > b.high ? -1 : a.high < b.high ? 1 : 0))
         return {
           ...state,
           searchResults: [...state.searchResults].sort((a: any, b: any) => a.high > b.high ? -1 : a.high < b.high ? 1 : 0)
         };
 
-      case ActionTypes.Search:
-        console.log(action)
+      case ActionTypes.Low:
         return {
           ...state,
-          searchResults: [...state.data].filter(day => day.conditions.includes(action.searchTerm))
+          searchResults: [...state.searchResults].sort((a: any, b: any) => a.low > b.low ? -1 : a.low < b.low ? 1 : 0)
         };
-  
-      
+
+      case ActionTypes.Conditions:
+        return {
+          ...state,
+          searchResults: [...state.searchResults].sort((a: any, b: any) => a.conditions > b.conditions ? 1 : a.conditions < b.conditions ? -1 : 0)
+        };
+
+      case ActionTypes.RainChance:
+        return {
+          ...state,
+          searchResults: [...state.searchResults].sort((a: any, b: any) => a.rainChance > b.rainChance ? -1 : a.rainChance < b.rainChance ? 1 : 0)
+        };
+
+      case ActionTypes.Search:
+        console.log([...state.data].filter(day => (day.conditions.toLowerCase()).includes(action.searchTerm.toLowerCase())))
+        return {
+          ...state,
+          searchResults: [...state.data].filter(day => (day.conditions.toLowerCase()).includes(action.searchTerm.toLowerCase()))
+        };
 
       default:
         return state;
   }
-  // switch (action.type) {
-  //   case 'DATE':
-  //       return state = [...state].sort((a, b) => a.date > b.date ? -1 : 1)
-
-  // case 'HIGH':
-  //   return state = [...state].sort((a, b) => a.high > b.high ? -1 : 1)
-
-  //   case 'LOW':
-  //       return state = [...state].sort((a, b) => a.low > b.low ? -1 : 1)
-
-  //   case 'RAIN':
-  //       return state = [...state].sort((a, b) => a.rainChance > b.rainChance ? -1 : 1)
-    
-  //   default:
-  //       return state
-  //   }
 }
-
-const getWeather = createFeatureSelector<AppState, WeatherDaysState>('weather');
-
-
-
-export const getAllWeather = createSelector(getWeather, state => state.searchResults);
-export const getAllWeatherLoaded = createSelector(getWeather, state => state.allWeatherLoaded);
-
