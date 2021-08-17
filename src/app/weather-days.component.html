@@ -1,0 +1,36 @@
+<h2>Weather Table</h2>
+
+<div class="table-container">
+	<div class="table-tool-bar">
+		<h2>Four Day Weather Forecast</h2>
+		<div>
+			Sort By:
+			<select #mySelect (change)="sortDays(mySelect.value)">
+            <!-- <select #mySelect> -->
+				<option *ngFor="let sortOption of sortOptions" [value]="sortOption">
+					{{sortOption}}
+				</option>
+			</select>
+		</div>
+	</div>
+    <table>
+        <tr>
+            <th>Date</th>
+            <th>Temp High</th>
+            <th>Temp Low</th>
+            <th>Conditions</th>
+            <th>Rain Chance</th>
+        </tr>
+        <tr *ngFor="let weatherDay of weatherDays$ | async">
+            <td>{{ weatherDay.date }}</td>
+            <td>{{ weatherDay.high }}°</td>
+            <td>{{ weatherDay.low }}°</td>
+            <td>{{ weatherDay.conditions }}</td>
+            <td>{{ weatherDay.rainChance }}%</td>
+        </tr>
+    </table>
+</div> 
+
+
+
+
