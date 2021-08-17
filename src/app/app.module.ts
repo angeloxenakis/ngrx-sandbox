@@ -11,6 +11,7 @@ import { WeatherDaysComponent } from './weather-days.component';
 import { weatherDaysReducer } from './app.store';
 import { AppEffects } from './app.effects';
 import { WeatherDaysService } from './weather-days.service';
+import { HttpClientModule } from '@angular/common/http';
 
 const routes = [
   {
@@ -23,7 +24,8 @@ const routes = [
   imports: [
     BrowserModule,
     FormsModule,
-    StoreModule.forRoot({ orders: weatherDaysReducer }),
+    HttpClientModule,
+    StoreModule.forRoot({ weather: weatherDaysReducer }),
     EffectsModule.forRoot([AppEffects]),
     RouterModule.forRoot(routes),
     StoreDevtoolsModule.instrument({

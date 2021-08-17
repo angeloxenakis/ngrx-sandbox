@@ -1,56 +1,83 @@
 import { Action, createSelector, createFeatureSelector } from '@ngrx/store';
 import { WeatherDay } from './model/weather-day';
 
+
 export interface AppState {
-  orders: OrdersState;
+  weather: WeatherDaysState;
 }
 
-export interface OrdersState {
-    allOrdersLoaded: boolean;
+export interface WeatherDaysState {
+    allWeatherLoaded: boolean;
     data: WeatherDay[] | [];
 }
 
 const intialState = {
-  allOrdersLoaded: false,
+  allWeatherLoaded: false,
   data: null
 }
 
 export enum ActionTypes {
-  LoadOrdersRequested = '[Orders API] Load Orders Requested',
-  LoadOrders = '[Orders API] Load Orders'
+  LoadWeatherRequested = '[Weather API] Load Weather Requested',
+  LoadWeather = '[Weather API] Load Weather',
+  Date = "DATE",
+  High = "HIGH",
+  Low = "LOW",
+  Conditions = "CONDITIONS"
 }
 
-export class LoadOrdersRequested implements Action {
-  readonly type = ActionTypes.LoadOrdersRequested;
+export class LoadWeatherRequested implements Action {
+  readonly type = ActionTypes.LoadWeatherRequested;
 };
 
-export class LoadOrders implements Action {
-  readonly type = ActionTypes.LoadOrders;
+export class LoadWeather implements Action {
+  readonly type = ActionTypes.LoadWeather;
   constructor(public payload: WeatherDay[]) {}
 }
 
-export type OrderActions = LoadOrdersRequested | LoadOrders;
+export class Date implements Action {
+  readonly type = ActionTypes.Date
+  constructor(public payload: WeatherDay[]) {}
+}
 
-export function weatherDaysReducer(state = intialState, action: any) {
-  console.log()
+export class High implements Action {
+  readonly type = ActionTypes.High
+  constructor(public payload: WeatherDay[]) {}
+}
+
+export type WeatherActions = LoadWeatherRequested | LoadWeather | Date | High ;
+
+export function weatherDaysReducer(state: any = intialState, action: any) {
   switch(action.type) {
-      case ActionTypes.LoadOrders:
+      
+      
+      case ActionTypes.LoadWeather:
       return {
-        allOrdersLoaded: true,
+        allWeatherLoaded: true,
         data: action.payload
       };
-    default:
-      return state;
+
+      case ActionTypes.Date:
+        return {
+          allWeatherLoaded: true,
+          data: action.payload
+        };
+
+      case ActionTypes.High:
+        return {
+          allWeatherLoaded: true,
+          data: action.payload
+        };
+      
+
+      default:
+        return state;
   }
   // switch (action.type) {
-  //   case 'INIT': 
-  //       return state = [...state]
-
   //   case 'DATE':
   //       return state = [...state].sort((a, b) => a.date > b.date ? -1 : 1)
 
-  //   case 'HIGH':
-  //       return state = [...state].sort((a, b) => a.high > b.high ? -1 : 1)
+  // case 'HIGH':
+  //   return state = [...state].sort((a, b) => a.high > b.high ? -1 : 1)
 
   //   case 'LOW':
   //       return state = [...state].sort((a, b) => a.low > b.low ? -1 : 1)
@@ -63,7 +90,8 @@ export function weatherDaysReducer(state = intialState, action: any) {
   //   }
 }
 
-const getOrders = createFeatureSelector<AppState, OrdersState>('orders');
+const getWeather = createFeatureSelector<AppState, WeatherDaysState>('weather');
 
-export const getAllOrders = createSelector(getOrders, state => state.data);
-export const getAllOrdersLoaded = createSelector(getOrders, state => state.allOrdersLoaded);
+export const getAllWeather = createSelector(getWeather, state => state.data);
+export const getAllWeatherLoaded = createSelector(getWeather, state => state.allWeatherLoaded);
+

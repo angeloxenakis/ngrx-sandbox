@@ -1,25 +1,33 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Effect, Actions, ofType } from '@ngrx/effects';
-import { LoadOrdersRequested, ActionTypes, LoadOrders, AppState, getAllOrdersLoaded} from './app.store';
+import { LoadWeatherRequested, ActionTypes, LoadWeather, AppState, getAllWeatherLoaded} from './app.store';
 import { withLatestFrom, exhaustMap, filter, map } from 'rxjs/operators';
 import { WeatherDaysService } from './weather-days.service';
 
+console.log()
+
 @Injectable()
 export class AppEffects {
+
   @Effect()
-  loadOrdersRequested$ = this.actions$.pipe(
-    ofType<LoadOrdersRequested>(ActionTypes.LoadOrdersRequested),
-    withLatestFrom(this.store.select(getAllOrdersLoaded)),
+  LoadWeatherRequested$ = this.actions$.pipe(
+    ofType<LoadWeatherRequested>(ActionTypes.LoadWeatherRequested),
+    withLatestFrom(this.store.select(getAllWeatherLoaded)),
     filter(([_, loaded]) => !loaded),
-    exhaustMap(() => this.weatherDaysService.fetchAllOrders().pipe(
-      map(result => new LoadOrders(result))
+    exhaustMap(() => this.weatherDaysService.fetchAllWeather().pipe(
+      map(result => new LoadWeather(result))
     ))
   );
+
+
+
+
 
   constructor(
     private actions$: Actions,
     private store: Store<AppState>,
     private weatherDaysService: WeatherDaysService
   ) {}
+  
 }

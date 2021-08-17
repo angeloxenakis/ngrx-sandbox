@@ -6,7 +6,6 @@
 		<div>
 			Sort By:
 			<select #mySelect (change)="sortDays(mySelect.value)">
-            <!-- <select #mySelect> -->
 				<option *ngFor="let sortOption of sortOptions" [value]="sortOption">
 					{{sortOption}}
 				</option>
