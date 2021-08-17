@@ -5,42 +5,4 @@
 	</div>
 	<h4>All your ClickUp weather in one place </h4>
 </div>
-
-<div class="table-container">
-	<div class="table-tool-bar">
-		<h2>Four Day Weather Forecast</h2>
-		<div>
-			Sort By:
-			<select #mySelect (change)="sortDays(mySelect.value)">
-				<option *ngFor="let sortOption of sortOptions" [value]="sortOption">
-					{{sortOption}}
-				</option>
-			</select>
-		</div>
-	</div>
-	<table>
-		<tr>
-			<th>Date</th>
-			<th>Temp High</th>
-			<th>Temp Low</th>
-			<th>Conditions</th>
-			<th>Rain Chance</th>
-		</tr>
-		<tr *ngFor="let day of days$ | async">
-			<td>{{ day.date }}</td>
-			<td>{{ day.high }}°</td>
-			<td>{{ day.low }}°</td>
-			<td>{{ day.conditions }}</td>
-			<td>{{ day.rainChance }}%</td>
-		</tr>
-	</table>
-</div>
-
-
-
-
-<!-- <div cdkDropList cdkDropListOrientation="horizontal" class="example-list" (cdkDropListDropped)="drop($event)">
-    <div class="example-box" *ngFor="let sortOption of sortOptions" cdkDrag>
-		{{sortOption}}
-    </div>
-</div> -->
+<weather-table></weather-table>
