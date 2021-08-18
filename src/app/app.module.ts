@@ -12,6 +12,8 @@ import { weatherDaysReducer } from './app.store';
 import { AppEffects } from './app.effects';
 import { WeatherDaysService } from './weather-days.service';
 import { HttpClientModule } from '@angular/common/http';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { CdkTableModule } from '@angular/cdk/table';
 
 const routes = [
   {
@@ -25,12 +27,14 @@ const routes = [
     BrowserModule,
     FormsModule,
     HttpClientModule,
+    CdkTableModule,
     StoreModule.forRoot({ weather: weatherDaysReducer }),
     EffectsModule.forRoot([AppEffects]),
     RouterModule.forRoot(routes),
     StoreDevtoolsModule.instrument({
       maxAge: 25
     }),
+    NoopAnimationsModule,
   ],
   declarations: [ AppComponent, WeatherDaysComponent ],
   bootstrap:    [ AppComponent ],

@@ -10,7 +10,7 @@ import { HttpClient } from "@angular/common/http"
 export class WeatherDaysService {
   constructor(private _httpClient: HttpClient) {}
 
-  // The code below works with a live fetch but is only 3 days worth of data
+  // The code below works with a live fetch but is only 3 days worth of forecast data
 
   // fetchAllWeather(): Observable<WeatherDay[]> {
   //   return new Observable( subscriber => this._httpClient.get("http://api.weatherapi.com/v1/forecast.json?key=0b19ed4e490540ae95845652211608&q=San%20Diego&days=5&aqi=no&alerts=no")
@@ -18,6 +18,44 @@ export class WeatherDaysService {
   // }
 
   // public cleanData(data: any): WeatherDay[] {
+  //   console.log(
+  //     data.forecast.forecastday.map((day: any) => {
+  //       return [{
+  //         day: day.hour[7], 
+  //         date: day.date, 
+  //         high: day.hour[7].temp_f,
+  //         conditions: day.hour[7].condition.text,
+  //         rain: day.hour[7].will_it_rain,
+  //         wind: day.hour[7].wind_mph
+  //       },
+  //       {
+  //         day: day.hour[11], 
+  //         date: day.date, 
+  //         high: day.hour[11].temp_f,
+  //         conditions: day.hour[10].condition.text,
+  //         rain: day.hour[11].will_it_rain,
+  //         wind: day.hour[11].wind_mph
+  //       },
+  //       {
+  //         day: day.hour[15], 
+  //         date: day.date,
+  //         time: day.time, 
+  //         high: day.hour[15].temp_f,
+  //         conditions: day.hour[15].condition.text,
+  //         rain: day.hour[15].will_it_rain,
+  //         wind: day.hour[15].wind_mph
+  //       },
+  //       {
+  //         day: day.hour[18], 
+  //         date: day.date, 
+  //         high: day.hour[18].temp_f,
+  //         conditions: day.hour[18].condition.text,
+  //         rain: day.hour[18].will_it_rain,
+  //         wind: day.hour[18].wind_mph
+  //       }
+  //     ]
+  //     })
+  //   )
   //   return data.forecast.forecastday.map((day: any) => {
   //     return {
   //       date: day.date, 
