@@ -13,41 +13,6 @@
             </div>
 		</div>
 	</div>
-    <table cdk-table>
-        <tr>
-            <th>Date</th>
-            <th>Temp High</th>
-            <th>Temp Low</th>
-            <th>Conditions</th>
-            <th>Rain Chance</th>
-        </tr>
-        <tr *ngFor="let weatherDay of weatherDays$ | async">
-            <td>{{ weatherDay.date }}</td>
-            <td>{{ weatherDay.high }}°</td>
-            <td>{{ weatherDay.low }}°</td>
-            <td>{{ weatherDay.conditions }}</td>
-            <td>{{ weatherDay.rainChance }}%</td>
-        </tr>
-    </table>
-</div> 
-
-<!-- -------------------------------------- -->
-
-<div class="table-container">
-	<div class="table-tool-bar">
-		<h2>Weather Forecast</h2>
-		<div class="weather-tools">
-            <div>Search By Conditions: <input type="text" #searchTerm (input)="searchDays(searchTerm.value)"/></div>
-            <div>
-                Sort By:
-                <select #mySelect (change)="sortDays(mySelect.value)">
-                    <option *ngFor="let sortOption of sortOptions" [value]="sortOption">
-                        {{sortOption}}
-                    </option>
-                </select>
-            </div>
-		</div>
-	</div>
     <table>
         <tr>
             <th>Date</th>

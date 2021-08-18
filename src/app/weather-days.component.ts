@@ -22,7 +22,6 @@ export class WeatherDaysComponent implements OnInit {
 
   constructor(private store: Store<AppState>, private weatherDaysService: WeatherDaysService) {
     this.weatherDays$ = this.store.select(getAllWeather);
-    DataSource = this.weatherDays$
   }
 
   ngOnInit() {}
@@ -36,14 +35,3 @@ export class WeatherDaysComponent implements OnInit {
   }
 }
 
-// export class ExampleDataSource extends DataSource<WeatherDay> {
-//   /** Stream of data that is provided to the table. */
-//   data = new BehaviorSubject<WeatherDay[]>(ELEMENT_DATA);
-
-//   /** Connect function called by the table to retrieve one stream containing the data to render. */
-//   connect(): Observable<WeatherDay[]> {
-//     return this.data;
-//   }
-
-//   disconnect() {}
-// }
