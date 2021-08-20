@@ -3,6 +3,11 @@
 ## Info
 ClickUp weather is a small app with a table component that loads in weather data. You can sort this table by any of its columns, and search for a specific weather condition to filter the list down to your search results.
 
+## Setup
+1. Clone down this repo
+2. In the repo from terminal, run npm install
+3. Run ng serve -o to run the server and open in browser
+
 ## File Tour
 
 * app.module.ts: Imports everything you need to run the ngrx store, cdk components for drag and drop, and a few other helpful things.
