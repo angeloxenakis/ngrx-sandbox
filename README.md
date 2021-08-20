@@ -5,8 +5,8 @@ ClickUp weather is a small app with a table component that loads in weather data
 
 ## Setup
 1. Clone down this repo
-2. In the repo from terminal, run npm install
-3. Run ng serve -o to run the server and open in browser
+2. In the repo from terminal, run `npm install`
+3. Run `ng serve -o` to run the server and open in browser
 
 ## File Tour
 
