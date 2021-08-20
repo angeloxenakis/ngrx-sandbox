@@ -115,7 +115,6 @@ export function weatherDaysReducer(state: any = intialState, action: any) {
         };
 
       case ActionTypes.Search:
-        console.log([...state.data].filter(day => (day.conditions.toLowerCase()).includes(action.searchTerm.toLowerCase())))
         return {
           ...state,
           searchResults: [...state.data].filter(day => (day.conditions.toLowerCase()).includes(action.searchTerm.toLowerCase()))

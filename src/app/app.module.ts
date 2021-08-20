@@ -12,7 +12,8 @@ import { weatherDaysReducer } from './app.store';
 import { AppEffects } from './app.effects';
 import { WeatherDaysService } from './weather-days.service';
 import { HttpClientModule } from '@angular/common/http';
-
+import { CdkTableModule } from '@angular/cdk/table';
+import { DragDropModule} from '@angular/cdk/drag-drop'
 const routes = [
   {
     path: '',
@@ -22,9 +23,11 @@ const routes = [
 
 @NgModule({
   imports: [
+    DragDropModule,
     BrowserModule,
     FormsModule,
     HttpClientModule,
+    CdkTableModule,
     StoreModule.forRoot({ weather: weatherDaysReducer }),
     EffectsModule.forRoot([AppEffects]),
     RouterModule.forRoot(routes),

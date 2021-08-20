@@ -13,13 +13,49 @@
             </div>
 		</div>
 	</div>
+    
+    <!-- <table cdk-table [dataSource]="WeatherDataSource" cdkDropListGroup >
+        <ng-container cdkColumnDef="Date" >
+            <th cdk-header-cell *cdkHeaderCellDef cdkDrag> Date </th>
+            <td cdk-cell *cdkCellDef="let element"> {{element.date}} </td>
+        </ng-container>
+
+        <ng-container cdkColumnDef="High" >
+            <th cdk-header-cell *cdkHeaderCellDef cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="drop($event)"> High </th>
+            <td cdk-cell *cdkCellDef="let element"> {{element.high}} </td>
+        </ng-container>
+
+        <ng-container cdkColumnDef="Low" >
+            <th cdk-header-cell *cdkHeaderCellDef> Low </th>
+            <td cdk-cell *cdkCellDef="let element"> {{element.low}} </td>
+        </ng-container>
+
+        <ng-container cdkColumnDef="Conditions" >
+            <th cdk-header-cell *cdkHeaderCellDef > Conditions </th>
+            <td cdk-cell *cdkCellDef="let element"> {{element.conditions}} </td>
+        </ng-container>
+
+        <ng-container cdkColumnDef="Rain" >
+            <th cdk-header-cell *cdkHeaderCellDef> Rain Chance </th>
+            <td cdk-cell *cdkCellDef="let element"> {{element.rainChance}} </td>
+        </ng-container>
+<div cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="drop($event)">
+        <tr cdk-header-row *cdkHeaderRowDef="sortOptions"  >
+
+        </tr></div>
+        <tr cdk-row *cdkRowDef="let row; columns: sortOptions"></tr>
+    </table>  -->
+</div> 
+
+<!--------------------------------------->
+
     <table>
-        <tr>
-            <th>Date</th>
-            <th>Temp High</th>
-            <th>Temp Low</th>
-            <th>Conditions</th>
-            <th>Rain Chance</th>
+        <tr cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="drop($event)">
+            <th cdkDrag>Date</th>
+            <th cdkDrag>Temp High</th>
+            <th cdkDrag>Temp Low</th>
+            <th cdkDrag>Conditions</th>
+            <th cdkDrag>Rain Chance</th>
         </tr>
         <tr *ngFor="let weatherDay of weatherDays$ | async">
             <td>{{ weatherDay.date }}</td>
@@ -29,7 +65,6 @@
             <td>{{ weatherDay.rainChance }}%</td>
         </tr>
     </table>
-</div> 
 
 
 
