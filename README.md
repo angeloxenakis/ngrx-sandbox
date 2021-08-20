@@ -1,27 +1,25 @@
-# ClickupTakeHome
+# ClickUp Weather
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.0.
+## Info
+ClickUp weather is a small app with a table component that loads in weather data. You can sort this table by any of it's columns, and search for a specific weather condition to filter the list down to your search results.
 
-## Development server
+## File Tour
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+* app.module.ts: Imports everything you need to run the ngrx store, cdk components for drag and drop, and a few other helpful things.
 
-## Code scaffolding
+* app.component.ts: Imports the AppState, and a `LoadWeatherRequested` class that gets the weather data into the state object. 
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+* app.component.html: Has a simple header thrown in and renders the <weather-table> 
 
-## Build
+* app.effects.ts: Uses `@Effect()` to set the value of `LoadWeatherRequested$` by piping in a series of actions that load the initial weather data into state.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+* app.store.ts: Where all the application's state is stored (`AppState` and `WeatherDaysState`), and all of the dispatch actions are defined and return the appropriate data in state.
 
-## Running unit tests
+* components/weather-days.component.ts: where a behavior source is created from our state object that funnels data into the html file. Also where functions are defined to reorder columns and dispatch actions to the store.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+* components/weather-days.component.html: where we utilize `weatherDays$` and `columns` from `weather-days.component.ts` to render what is in the state object to the page.
 
-## Running end-to-end tests
+* services/weather-days.service.ts: gets the inital weather data in `fetchAllData()` which is utilized when we set the initial state in app.effects.ts
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+* modules/weather-day.ts: The model for a weather day object is defined.
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.

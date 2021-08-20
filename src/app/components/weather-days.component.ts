@@ -34,7 +34,6 @@ export class WeatherDaysComponent implements OnInit {
     this.WeatherDataSource = new WeatherDataSource(this.store)
     this.weatherDays$ = this.WeatherDataSource.connect()
     this.previousIndex = 0
-    console.log(this.WeatherDataSource.connect())
   }
 
   ngOnInit() {}
