@@ -24,7 +24,7 @@ export class WeatherDaysService {
   //       high: day.day.maxtemp_f, 
   //       low: day.day.mintemp_f, 
   //       conditions: day.day.condition.text, 
-  //       rainChance: day.day.daily_will_it_rain
+  //       rain: day.day.daily_will_it_rain
   //     }
   //   })
   // }
@@ -34,15 +34,15 @@ export class WeatherDaysService {
 
   fetchAllWeather(): Observable<WeatherDay[]> {
     return of([
-        {date: "8-18-2021", high: 94, low: 68, conditions: "Sunny", rainChance: 20},
-        {date: "8-19-2021", high: 100, low: 63, conditions: "Sunny", rainChance: 10},
-        {date: "8-20-2021", high: 96, low: 75, conditions: "Partly Cloudy", rainChance: 40},
-        {date: "8-21-2021", high: 92, low: 74, conditions: "Rainy", rainChance: 80},
-        {date: "8-22-2021", high: 88, low: 62, conditions: "Rainy", rainChance: 90},
-        {date: "8-23-2021", high: 90, low: 70, conditions: "Sunny", rainChance: 25},
-        {date: "8-24-2021", high: 85, low: 63, conditions: "Rainy", rainChance: 78},
-        {date: "8-25-2021", high: 82, low: 61, conditions: "Sunny", rainChance: 10},
-        {date: "8-26-2021", high: 78, low: 58, conditions: "Partly Cloudy", rainChance: 50}
+        {date: "8-18-2021", high: 94, low: 68, conditions: "Sunny", rain: 20},
+        {date: "8-19-2021", high: 100, low: 63, conditions: "Sunny", rain: 10},
+        {date: "8-20-2021", high: 96, low: 75, conditions: "Partly Cloudy", rain: 40},
+        {date: "8-21-2021", high: 92, low: 74, conditions: "Rainy", rain: 80},
+        {date: "8-22-2021", high: 88, low: 62, conditions: "Rainy", rain: 90},
+        {date: "8-23-2021", high: 90, low: 70, conditions: "Sunny", rain: 25},
+        {date: "8-24-2021", high: 85, low: 63, conditions: "Rainy", rain: 78},
+        {date: "8-25-2021", high: 82, low: 61, conditions: "Sunny", rain: 10},
+        {date: "8-26-2021", high: 78, low: 58, conditions: "Partly Cloudy", rain: 50}
     ])
   }
 }

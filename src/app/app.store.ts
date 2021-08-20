@@ -24,7 +24,7 @@ export enum ActionTypes {
   High = "HIGH",
   Low = "LOW",
   Conditions = "CONDITIONS",
-  RainChance = "RAIN",
+  Rain = "RAIN",
   Search = "SEARCH"
 }
 
@@ -57,7 +57,7 @@ export class Conditions implements Action {
   constructor(public payload: WeatherDay[]) {}
 }
 
-export class RainChance implements Action {
+export class Rain implements Action {
   readonly type = ActionTypes.Conditions
   constructor(public payload: WeatherDay[]) {}
 }
@@ -67,7 +67,7 @@ export class Search implements Action {
   constructor(public payload: WeatherDay[]) {}
 }
 
-export type WeatherActions = LoadWeatherRequested | LoadWeather | Date | High | Low | Conditions | RainChance;
+export type WeatherActions = LoadWeatherRequested | LoadWeather | Date | High | Low | Conditions | Rain;
 
 const getWeather = createFeatureSelector<AppState, WeatherDaysState>('weather');
 export const getAllWeather = createSelector(getWeather, state => state.searchResults);
@@ -108,10 +108,10 @@ export function weatherDaysReducer(state: any = intialState, action: any) {
           searchResults: [...state.searchResults].sort((a: any, b: any) => a.conditions > b.conditions ? 1 : a.conditions < b.conditions ? -1 : 0)
         };
 
-      case ActionTypes.RainChance:
+      case ActionTypes.Rain:
         return {
           ...state,
-          searchResults: [...state.searchResults].sort((a: any, b: any) => a.rainChance > b.rainChance ? -1 : a.rainChance < b.rainChance ? 1 : 0)
+          searchResults: [...state.searchResults].sort((a: any, b: any) => a.rain > b.rain ? -1 : a.rain < b.rain ? 1 : 0)
         };
 
       case ActionTypes.Search:

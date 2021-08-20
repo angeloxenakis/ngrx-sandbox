@@ -6,14 +6,27 @@
             <div>
                 Sort By:
                 <select #mySelect (change)="sortDays(mySelect.value)">
-                    <option *ngFor="let sortOption of sortOptions" [value]="sortOption">
-                        {{sortOption}}
+                    <option *ngFor="let column of columns" [value]="column">
+                        {{column}}
                     </option>
                 </select>
             </div>
 		</div>
 	</div>
-    
+    <table>
+        <tr cdkDropList  cdkDropListOrientation="horizontal" (cdkDropListDropped)="drop($event)">
+            <th cdkDrag *ngFor="let column of columns">{{ column }}</th>
+        </tr>
+        <tr *ngFor="let weatherDay of weatherDays$ | async">
+            <td>{{ weatherDay[sortOptions[0]] }}</td>
+            <td>{{ weatherDay[sortOptions[1]] }}</td>
+            <td>{{ weatherDay[sortOptions[2]] }}</td>
+            <td>{{ weatherDay[sortOptions[3]] }}</td>
+            <td>{{ weatherDay[sortOptions[4]] }}</td>
+        </tr>
+    </table>
+</div> 
+
     <!-- <table cdk-table [dataSource]="WeatherDataSource" cdkDropListGroup >
         <ng-container cdkColumnDef="Date" >
             <th cdk-header-cell *cdkHeaderCellDef cdkDrag> Date </th>
@@ -37,35 +50,12 @@
 
         <ng-container cdkColumnDef="Rain" >
             <th cdk-header-cell *cdkHeaderCellDef> Rain Chance </th>
-            <td cdk-cell *cdkCellDef="let element"> {{element.rainChance}} </td>
+            <td cdk-cell *cdkCellDef="let element"> {{element.rain}} </td>
         </ng-container>
-<div cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="drop($event)">
+        
+        <div cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="drop($event)">
         <tr cdk-header-row *cdkHeaderRowDef="sortOptions"  >
 
         </tr></div>
         <tr cdk-row *cdkRowDef="let row; columns: sortOptions"></tr>
     </table>  -->
-</div> 
-
-<!--------------------------------------->
-
-    <table>
-        <tr cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="drop($event)">
-            <th cdkDrag>Date</th>
-            <th cdkDrag>Temp High</th>
-            <th cdkDrag>Temp Low</th>
-            <th cdkDrag>Conditions</th>
-            <th cdkDrag>Rain Chance</th>
-        </tr>
-        <tr *ngFor="let weatherDay of weatherDays$ | async">
-            <td>{{ weatherDay.date }}</td>
-            <td>{{ weatherDay.high }}°</td>
-            <td>{{ weatherDay.low }}°</td>
-            <td>{{ weatherDay.conditions }}</td>
-            <td>{{ weatherDay.rainChance }}%</td>
-        </tr>
-    </table>
-
-
-
-

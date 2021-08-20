@@ -3,5 +3,5 @@ export interface WeatherDay {
     high: number, 
     low: number, 
     conditions: string 
-    rainChance: number
+    rain: number
 }
