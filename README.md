@@ -1,7 +1,7 @@
-# ClickUp Weather
+# ClickUpWeather
 
 ## Info
-ClickUp weather is a small app with a table component that loads in weather data. You can sort this table by any of it's columns, and search for a specific weather condition to filter the list down to your search results.
+ClickUp weather is a small app with a table component that loads in weather data. You can sort this table by any of its columns, and search for a specific weather condition to filter the list down to your search results.
 
 ## File Tour
 
