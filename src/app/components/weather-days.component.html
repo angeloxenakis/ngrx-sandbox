@@ -1,0 +1,61 @@
+<div class="table-container">
+	<div class="table-tool-bar">
+		<h2>Weather Forecast</h2>
+		<div class="weather-tools">
+            <div>Search By Condition: <input type="text" #searchTerm (input)="searchDays(searchTerm.value)"/></div>
+            <div>
+                Sort By:
+                <select #mySelect (change)="sortDays(mySelect.value)">
+                    <option *ngFor="let column of columns" [value]="column">
+                        {{column}}
+                    </option>
+                </select>
+            </div>
+		</div>
+	</div>
+    <table>
+        <tr cdkDropList  cdkDropListOrientation="horizontal" (cdkDropListDropped)="drop($event)">
+            <th cdkDrag *ngFor="let column of columns">{{ column }}</th>
+        </tr>
+        <tr *ngFor="let weatherDay of weatherDays$ | async">
+            <td>{{ weatherDay[dataProperties[0]] }}</td>
+            <td>{{ weatherDay[dataProperties[1]] }}</td>
+            <td>{{ weatherDay[dataProperties[2]] }}</td>
+            <td>{{ weatherDay[dataProperties[3]] }}</td>
+            <td>{{ weatherDay[dataProperties[4]] }}</td>
+        </tr>
+    </table>
+</div> 
+
+<!-- <table cdk-table [dataSource]="WeatherDataSource" cdkDropListGroup >
+    <ng-container cdkColumnDef="Date" >
+        <th cdk-header-cell *cdkHeaderCellDef cdkDrag> Date </th>
+        <td cdk-cell *cdkCellDef="let element"> {{element.date}} </td>
+    </ng-container>
+
+    <ng-container cdkColumnDef="High" >
+        <th cdk-header-cell *cdkHeaderCellDef cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="drop($event)"> High </th>
+        <td cdk-cell *cdkCellDef="let element"> {{element.high}} </td>
+    </ng-container>
+
+    <ng-container cdkColumnDef="Low" >
+        <th cdk-header-cell *cdkHeaderCellDef> Low </th>
+        <td cdk-cell *cdkCellDef="let element"> {{element.low}} </td>
+    </ng-container>
+
+    <ng-container cdkColumnDef="Conditions" >
+        <th cdk-header-cell *cdkHeaderCellDef > Conditions </th>
+        <td cdk-cell *cdkCellDef="let element"> {{element.conditions}} </td>
+    </ng-container>
+
+    <ng-container cdkColumnDef="Rain" >
+        <th cdk-header-cell *cdkHeaderCellDef> Rain Chance </th>
+        <td cdk-cell *cdkCellDef="let element"> {{element.rain}} </td>
+    </ng-container>
+    
+    <div cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="drop($event)">
+    <tr cdk-header-row *cdkHeaderRowDef="sortOptions"  >
+
+    </tr></div>
+    <tr cdk-row *cdkRowDef="let row; columns: sortOptions"></tr>
+</table>  -->

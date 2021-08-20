@@ -7,10 +7,10 @@ import { RouterModule } from '@angular/router';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AppComponent } from './app.component';
-import { WeatherDaysComponent } from './weather-days.component';
+import { WeatherDaysComponent } from './components/weather-days.component';
 import { weatherDaysReducer } from './app.store';
 import { AppEffects } from './app.effects';
-import { WeatherDaysService } from './weather-days.service';
+import { WeatherDaysService } from './services/weather-days.service';
 import { HttpClientModule } from '@angular/common/http';
 import { CdkTableModule } from '@angular/cdk/table';
 import { DragDropModule} from '@angular/cdk/drag-drop'

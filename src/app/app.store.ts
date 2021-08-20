@@ -1,5 +1,5 @@
 import { Action, createSelector, createFeatureSelector } from '@ngrx/store';
-import { WeatherDay } from './model/weather-day';
+import { WeatherDay } from './models/weather-day';
 
 
 export interface AppState {

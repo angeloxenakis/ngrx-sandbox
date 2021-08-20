@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { Effect, Actions, ofType } from '@ngrx/effects';
 import { LoadWeatherRequested, ActionTypes, LoadWeather, AppState, getAllWeatherLoaded} from './app.store';
 import { withLatestFrom, exhaustMap, filter, map } from 'rxjs/operators';
-import { WeatherDaysService } from './weather-days.service';
+import { WeatherDaysService } from './services/weather-days.service';
 
 @Injectable()
 export class AppEffects {

@@ -1,10 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable, BehaviorSubject } from 'rxjs';
-import { AppState, getAllWeather } from './app.store';
-import { WeatherDay } from './model/weather-day';
-import { WeatherDaysService } from './weather-days.service';
-import { CdkDragStart, CdkDropList, moveItemInArray, CdkDragDrop } from '@angular/cdk/drag-drop';
+import { AppState, getAllWeather } from '../app.store';
+import { WeatherDay } from '../models/weather-day';
+import { WeatherDaysService } from '../services/weather-days.service';
+import { moveItemInArray, CdkDragDrop } from '@angular/cdk/drag-drop';
 import { DataSource } from '@angular/cdk/collections';
 
 class WeatherDataSource implements DataSource<WeatherDay> {
@@ -24,17 +23,12 @@ class WeatherDataSource implements DataSource<WeatherDay> {
 })
 
 export class WeatherDaysComponent implements OnInit {
-  sortOptions: string[] = ["date", "high", "low", "conditions", "rain"]
+  dataProperties: string[] = ["date", "high", "low", "conditions", "rain"]
   columns: string[] = ["Date", "High Temp", "Low Temp", "Conditions", "Rain Chance"]
 
   public WeatherDataSource: WeatherDataSource
   public previousIndex: number
   public weatherDays$: any
-
-  drop(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.sortOptions, event.previousIndex, event.currentIndex);
-    moveItemInArray(this.columns, event.previousIndex, event.currentIndex);
-  }
 
   constructor(private store: Store<AppState>, private weatherDaysService: WeatherDaysService) {
     this.WeatherDataSource = new WeatherDataSource(this.store)
@@ -44,6 +38,11 @@ export class WeatherDaysComponent implements OnInit {
   }
 
   ngOnInit() {}
+
+  public drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.dataProperties, event.previousIndex, event.currentIndex);
+    moveItemInArray(this.columns, event.previousIndex, event.currentIndex);
+  }
 
   public sortDays(value: string): void {
     this.store.dispatch({type: value.split(" ")[0].toUpperCase()})
@@ -56,5 +55,4 @@ export class WeatherDaysComponent implements OnInit {
   public createRowData(weatherState: any) {
     console.log(weatherState)
   }
-
 }
